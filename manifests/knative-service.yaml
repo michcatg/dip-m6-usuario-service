@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: usuario-serverless
+spec:
+  template:
+    spec:
+      containers:
+        - image: mitchcatg/usuario-servicem6:v1.0.4
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: 'mongodb://admin:admin123@mongodb:27017/usuario?authSource=admin'
+              #value: 'mongodb://mongodb:27017/usuario'
+            - name: SPRING_PORT
+              value: '8082'
+
